@@ -15,6 +15,6 @@ jobs:
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
         run: |
           curl --fail --silent --show-error \
-            "$SUPABASE_URL/rest/v1/heartbeat?select=*&limit=1" \
-            -H "apikey: $SUPABASE_KEY" \
-            -H "Authorization: Bearer $SUPABASE_KEY"
+            "https://ocyvfffnjnsnezeznwly.supabase.com/rest/v1/heartbeat?select=*&limit=1" \
+            -H "apikey: sb_publishable_BIMLHjxT3am22F0aX76npA_Izgx4LAW" \
+            -H "Authorization: Bearer sb_publishable_BIMLHjxT3am22F0aX76npA_Izgx4LAW"
