@@ -14,7 +14,7 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
         run: |
-          curl --fail --silent --show-error \
+          curl --fail-with-body --show-error \
             --write-out "\nHTTP_STATUS:%{http_code}\n" \
             "$SUPABASE_URL/rest/v1/heartbeat?select=*&limit=1" \
             -H "apikey: $SUPABASE_KEY" \
