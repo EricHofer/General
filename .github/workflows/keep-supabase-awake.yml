@@ -2,18 +2,19 @@ name: keep-supabase-awake
 
 on:
   schedule:
-    - cron: '0 6 * * 1,4'
+    - cron: '17 5 * * 1,4'
   workflow_dispatch:
 
 jobs:
-  ping-supabase:
+  ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Supabase
+      - name: Ping Supabase REST API
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
         run: |
           curl --fail --silent --show-error \
-            "$SUPABASE_URL/rest/v1/heartbeat?select=*&limit=1" \
-            -H "apikey: $SUPABASE_KEY"
+            "https://ocyvfffnjnsnezeznwly.supabase.com/rest/v1/heartbeat?select=*&limit=1" \
+            -H "apikey: sb_publishable_BIMLHjxT3am22F0aX76npA_Izgx4LAW" \
+            -H "Authorization: Bearer sb_publishable_BIMLHjxT3am22F0aX76npA_Izgx4LAW"
