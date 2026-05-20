@@ -6,17 +6,15 @@ on:
   workflow_dispatch:
 
 jobs:
-  keepalive:
+  ping:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Call keepalive endpoint
+      - name: Ping Supabase REST API
         env:
-          KEEPALIVE_URL: ${{ secrets.KEEPALIVE_URL }}
-          KEEPALIVE_TOKEN: ${{ secrets.KEEPALIVE_TOKEN }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
         run: |
           curl --fail --silent --show-error \
-            --retry 2 \
-            --retry-delay 10 \
-            -H "Authorization: Bearer $KEEPALIVE_TOKEN" \
-            "$KEEPALIVE_URL"
+            "$SUPABASE_URL/rest/v1/heartbeat?select=*&limit=1" \
+            -H "apikey: $SUPABASE_KEY" \
+            -H "Authorization: Bearer $SUPABASE_KEY"
